@@ -71,8 +71,25 @@ class Graph:
 
         This should be done using recursion.
         """
-        pass  # TODO
+        s = Stack()
+        s.push(starting_vertex)
+        visited = set()
 
+        def recursive_solution(test):
+            if s.size() > 0:
+                v = s.pop()
+                if v not in visited:
+                    visited.add(v)
+                    print(v)
+                    neighbors = self.get_neighbors(v)
+                    for e in neighbors:
+                        s.push(e)
+                recursive_solution(s)
+            else:
+                return False
+        recursive_solution(s)
+        return visited
+                
     def bfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing the shortest path from
