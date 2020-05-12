@@ -142,7 +142,30 @@ class Graph:
 
         This should be done using recursion.
         """
-        pass  # TODO
+        s = Stack()
+        s.push([starting_vertex])
+        visited = set()
+
+        def recursive_solution(test):
+            if s.size == 0:
+                return
+            else:
+                path = s.pop()
+                vertex = path[-1]
+                if vertex not in visited:
+                    if vertex == destination_vertex:
+                        return path
+                    else:
+                        visited.add(vertex)
+                        neighbors = self.get_neighbors(vertex)
+                        for n in neighbors:
+                            new_path = path.copy()
+                            new_path.append(n)
+                            s.push(new_path)
+                return recursive_solution(s)
+        return recursive_solution(s)
+        
+
 
 if __name__ == '__main__':
     graph = Graph()  # Instantiate your graph
